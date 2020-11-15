@@ -4,9 +4,9 @@
 #include <iostream>
 
 String::String(int size)
-	:max_size_(size)
+	: max_size_(size)
 {
-	try 
+	try
 	{
 		data_ = new char[max_size_ + 1];
 	}
@@ -19,8 +19,8 @@ String::String(int size)
 	data_[0] = '\0';
 }
 
-String::String(const char* init)
-	:max_size_(strlen(init))
+String::String(const char *init)
+	: max_size_(strlen(init))
 {
 	try
 	{
@@ -35,8 +35,8 @@ String::String(const char* init)
 	strcpy(data_, init);
 }
 
-String::String(const String& init)
-	:max_size_(init.max_size_)
+String::String(const String &init)
+	: max_size_(init.max_size_)
 {
 	try
 	{
@@ -51,9 +51,9 @@ String::String(const String& init)
 	strcpy(data_, init.data_);
 }
 
-String String::GetSubString(int begin_pos, int length)const
+String String::GetSubString(int begin_pos, int length) const
 {
-	if (begin_pos < 0 || length < 0 || begin_pos + length>max_size_)
+	if (begin_pos < 0 || length < 0 || begin_pos + length > max_size_)
 	{
 		String sub_string(0);
 		return sub_string;
@@ -75,9 +75,9 @@ String String::GetSubString(int begin_pos, int length)const
 	}
 }
 
-int String::PatternMatching(const String& pattern, int start_pos)const
+int String::PatternMatching(const String &pattern, int start_pos) const
 {
-	int* next = nullptr;
+	int *next = nullptr;
 	try
 	{
 		next = new int[cur_length_];
@@ -91,18 +91,19 @@ int String::PatternMatching(const String& pattern, int start_pos)const
 	int pos_p = 0, pos_t = start_pos;
 	int length_p = pattern.cur_length_;
 	int length_t = cur_length_;
-	while (pos_p < length_p && pos_t < length_t)	//对两字符串进行扫描
-	{	
-		if (pos_p == -1 || pattern.data_[pos_p] == data_[pos_t])	//对应字符匹配
+	while (pos_p < length_p && pos_t < length_t) //对两字符串进行扫描
+	{
+		if (pos_p == -1 || pattern.data_[pos_p] == data_[pos_t]) //对应字符匹配
 		{
-			pos_p++; pos_t++;
+			pos_p++;
+			pos_t++;
 		}
 		else
 		{
 			pos_p = next[pos_p];
 		}
 	}
-	delete[]next;
+	delete[] next;
 	if (pos_p < length_p)
 	{
 		return -1;
@@ -113,7 +114,7 @@ int String::PatternMatching(const String& pattern, int start_pos)const
 	}
 }
 
-void String::GetNext(int next[])const
+void String::GetNext(int next[]) const
 {
 	next[0] = -1;
 	int length_p = cur_length_;
@@ -122,7 +123,8 @@ void String::GetNext(int next[])const
 	{
 		if (k == -1 || data_[j] == data_[k])
 		{
-			j++; k++;
+			j++;
+			k++;
 			next[j] = k;
 		}
 		else
@@ -132,11 +134,11 @@ void String::GetNext(int next[])const
 	}
 }
 
-String& String::operator=(const String& rhs)
+String &String::operator=(const String &rhs)
 {
 	if (this != &rhs)
 	{
-		delete[]data_;
+		delete[] data_;
 		try
 		{
 			data_ = new char[rhs.max_size_ + 1];
@@ -157,9 +159,9 @@ String& String::operator=(const String& rhs)
 	return *this;
 }
 
-String& String::operator+=(const String& rhs)
+String &String::operator+=(const String &rhs)
 {
-	char* original_data = data_;
+	char *original_data = data_;
 	try
 	{
 		data_ = new char[cur_length_ + rhs.cur_length_];
@@ -173,11 +175,11 @@ String& String::operator+=(const String& rhs)
 	max_size_ = cur_length_;
 	strcpy(data_, original_data);
 	strcat(data_, rhs.data_);
-	delete[]original_data;
+	delete[] original_data;
 	return *this;
 }
 
-char& String::operator[](int index)
+char &String::operator[](int index)
 {
 	if (index < 0 || index >= cur_length_)
 	{

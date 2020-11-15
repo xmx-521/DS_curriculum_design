@@ -6,3 +6,6 @@ test.cpp
 
 #exe
 *.exe
+
+#local history
+.history/
