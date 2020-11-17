@@ -1,7 +1,7 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
-//单向链表节点
+//链表节点
 
 template <class T>
 class List; //forward declaration
@@ -22,7 +22,7 @@ private:
 	LinkNode *l_link_, *r_link_;
 };
 
-//带附加头结点的双向循环链表，头结点下表为0，可访问下标从1开始
+//带附加头结点的双向循环链表，头结点下标为0，可访问下标从1开始
 template <typename T>
 class List
 {
