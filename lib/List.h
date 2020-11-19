@@ -38,11 +38,12 @@ public:
 	int GetLength() const;
 	LinkNode<T> *GetHead() const { return first_; } //获得头指针
 	LinkNode<T> *GetBegin() const { return first_->r_link_; }
-	LinkNode<T> *GetEnd() const { return GetHead(); }
+	LinkNode<T> *GetEnd() const { return first_; }
 	LinkNode<T> *Find(const T &data) const;	 //搜索含数据data的第一个节点并返回其地址，若找不到这样的节点则返回null
 	LinkNode<T> *GetAdress(int index) const; //返回第index节点的地址，附加头结点index为0
 	bool Insert(int index, T &data);		 //在第index节点后插入data,附加头结点index为0
-	bool Erase(int index);					 //删除第index节点,可删除节点index从1开始
+	void PushBack(const T &data);
+	bool Erase(int index); //删除第index节点,可删除节点index从1开始
 	bool IsEmpty() const { return first_->r_link_ == nullptr ? true : false; }
 
 	T &operator[](int index);		  //重载subscript运算符，可访问起始位置为1
@@ -102,7 +103,7 @@ void List<T>::Init(const List &rhs)
 		ptr_lhs->r_link_ = new_node;
 		first_->l_link_ = new_node;
 		ptr_lhs = new_node;
-		ptr_rhs = ptr_rhs->r_link;
+		ptr_rhs = ptr_rhs->r_link_;
 	}
 }
 
@@ -201,6 +202,14 @@ bool List<T>::Insert(int index, T &data)
 }
 
 template <class T>
+void List<T>::PushBack(const T &data)
+{
+	LinkNode<T> *new_node = CreateNode(data, first_->l_link_, first_);
+	first_->l_link_->r_link_ = new_node;
+	first_->l_link_ = new_node;
+}
+
+template <class T>
 bool List<T>::Erase(int index)
 {
 	LinkNode<T> *erase_address = GetAdress(index);
@@ -234,6 +243,7 @@ template <class T>
 List<T> &List<T>::operator=(const List &rhs)
 {
 	Clear();
-	Init();
+	Init(rhs);
+	return *this;
 }
 #endif // !_LIST_H_
