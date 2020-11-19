@@ -5,10 +5,9 @@
             "label": "task g++",
             "command": "g++.exe",
             "args": [
-                "-g",
-                //"D:/github/DS_course_design/lib/*.cpp",
+                "-g", //在这里列出你想编译的cpp文件
                 "D:/github/DS_course_design/src/Problem1/Problem1.cpp",
-                "-o",
+                "-o", //在这里列出你想生成exe的目录位置与名称
                 "D:/github/DS_course_design/src/Problem1/Problem1.exe"
             ],
             "options": {

@@ -8,14 +8,14 @@
             "name": "g++.exe - 生成和调试活动文件",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe", //debug时请将聚焦当前cpp文件，或者自行修改program
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "D:/mingw64/mingw64/bin/gdb.exe",
+            "miDebuggerPath": "D:/mingw64/mingw64/bin/gdb.exe", //在这里写出你的gdb.exe路径
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
