@@ -7,9 +7,9 @@
             "args": [
                 "-g",
                 //"D:/github/DS_course_design/lib/*.cpp",
-                "D:/github/DS_course_design/src/Problem2.cpp",
+                "D:/github/DS_course_design/src/Problem1/Problem1.cpp",
                 "-o",
-                "D:/github/DS_course_design/src/Problem2.exe"
+                "D:/github/DS_course_design/src/Problem1/Problem1.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
