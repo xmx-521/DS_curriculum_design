@@ -148,15 +148,17 @@ void System::Erase()
         cout << "请输入要删除的考生的考号：";
         int erase_number = 0;
         cin >> erase_number;
-        for (int i = 1; i <= students_.GetLength(); ++i)
+        int index = 1;
+        for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
         {
-            if (students_[i].number_ == erase_number)
+            if (node->GetData().number_ == erase_number)
             {
-                cout << "你删除的学生为：" << students_[i];
-                students_.Erase(i);
+                cout << "你删除的学生为：" << node->GetData();
+                students_.Erase(index);
                 Display();
                 return;
             }
+            index++;
         }
         cerr << "系统中无考号为" << erase_number << "的考生，请核对后重新输入" << endl
              << endl;
@@ -168,9 +170,9 @@ void System::Search()
     cout << "请输入你要查找的考生的考号：";
     int search_number = 0;
     cin >> search_number;
-    for (int i = 1; i <= students_.GetLength(); ++i)
+    for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
     {
-        if (students_[i].number_ == search_number)
+        if (node->GetData().number_ == search_number)
         {
             cout << "您查找的考生的信息为：" << endl;
             cout << "考号" << '\t'
@@ -178,7 +180,7 @@ void System::Search()
                  << "性别" << '\t'
                  << "年龄" << '\t'
                  << "报考类别" << endl;
-            cout << students_[i]
+            cout << node->GetData()
                  << endl;
             return;
         }
@@ -194,9 +196,9 @@ void System::Modify()
     {
         cout << "请输入你要改变信息的考生的考号：";
         cin >> modify_number;
-        for (int i = 1; i <= students_.GetLength(); ++i)
+        for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
         {
-            if (students_[i].number_ == modify_number)
+            if (node->GetData().number_ == modify_number)
             {
                 while (true)
                 {
@@ -207,14 +209,14 @@ void System::Modify()
                     int age = 0;
                     string test_type;
                     cin >> number >> name >> sex >> age >> test_type;
-                    if (IsNumberSame(number))
+                    if (number != node->GetData().number_ && IsNumberSame(number))
                     {
                         continue;
                     }
                     else
                     {
                         Student student(number, name, sex, age, test_type);
-                        students_[i] = student;
+                        node->SetData(student);
                         Display();
                         return;
                     }
@@ -233,10 +235,10 @@ void System::Statistic()
         cout << "系统中共有" << students_.GetLength() << "名考生" << endl;
         int male_num = 0;
         int sum_age = 0;
-        for (int i = 1; i <= students_.GetLength(); ++i)
+        for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
         {
-            sum_age += students_[i].age_;
-            if (students_[i].sex_ == 'm')
+            sum_age += node->GetData().age_;
+            if (node->GetData().sex_ == 'm')
             {
                 male_num++;
             }
@@ -252,9 +254,9 @@ void System::Statistic()
 
 bool System::IsNumberSame(int number)
 {
-    for (int i = 1; i <= students_.GetLength(); i++)
+    for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
     {
-        if (number == students_[i].number_)
+        if (number == node->GetData().number_)
         {
             cerr << "错误！考号为" << number << "的考生已在系统中，请核对后重新输入" << endl
                  << endl;
@@ -272,9 +274,9 @@ void System::Display()
          << "性别" << '\t'
          << "年龄" << '\t'
          << "报考类别" << endl;
-    for (int i = 1; i <= students_.GetLength(); i++)
+    for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
     {
-        cout << students_[i];
+        cout << node->GetData();
     }
     cout << endl;
 }

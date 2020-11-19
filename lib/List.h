@@ -1,3 +1,4 @@
+
 #ifndef _LIST_H_
 #define _LIST_H_
 
@@ -16,6 +17,9 @@ public:
 		: l_link_(l_link), r_link_(r_link) {}
 	LinkNode(const T &data, LinkNode *l_link = nullptr, LinkNode *r_link = nullptr)
 		: data_(data), l_link_(l_link), r_link_(r_link) {}
+	void SetData(const T &data) { data_ = data; }
+	T &GetData() { return data_; }
+	LinkNode *Next() { return r_link_; }
 
 private:
 	T data_;
@@ -33,10 +37,12 @@ public:
 	void Clear();
 	int GetLength() const;
 	LinkNode<T> *GetHead() const { return first_; } //获得头指针
-	LinkNode<T> *Find(const T &data) const;			//搜索含数据data的第一个节点并返回其地址，若找不到这样的节点则返回null
-	LinkNode<T> *GetAdress(int index) const;		//返回第index节点的地址，附加头结点index为0
-	bool Insert(int index, T &data);				//在第index节点后插入data,附加头结点index为0
-	bool Erase(int index);							//删除第index节点,可删除节点index从1开始
+	LinkNode<T> *GetBegin() const { return first_->r_link_; }
+	LinkNode<T> *GetEnd() const { return GetHead(); }
+	LinkNode<T> *Find(const T &data) const;	 //搜索含数据data的第一个节点并返回其地址，若找不到这样的节点则返回null
+	LinkNode<T> *GetAdress(int index) const; //返回第index节点的地址，附加头结点index为0
+	bool Insert(int index, T &data);		 //在第index节点后插入data,附加头结点index为0
+	bool Erase(int index);					 //删除第index节点,可删除节点index从1开始
 	bool IsEmpty() const { return first_->r_link_ == nullptr ? true : false; }
 
 	T &operator[](int index);		  //重载subscript运算符，可访问起始位置为1

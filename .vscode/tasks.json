@@ -3,13 +3,13 @@
         {
             "type": "shell",
             "label": "task g++",
-            "command": "D:\\mingw64\\mingw64\\bin\\g++.exe",
+            "command": "g++.exe",
             "args": [
                 "-g",
-                "${workspaceFolder}\\lib\\*.cpp",
-                "${file}",
+                "D:/github/DS_course_design/lib/*.cpp",
+                "D:/github/DS_course_design/src/Problem1.cpp",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "D:/github/DS_course_design/src/Problem1.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
