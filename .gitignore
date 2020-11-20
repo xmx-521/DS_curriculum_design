@@ -1,5 +1,6 @@
 #my configurations
 *.pdb
+.VSCodeCounter/
 
 #test file
 test.cpp

@@ -1,6 +1,9 @@
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 
+#include <iostream>
+using std::cerr;
+using std::endl;
 const int default_capacity = 3;
 
 template <class T>
@@ -21,8 +24,8 @@ public:
         delete[] old_elems_;
         return *this;
     }
-    T &operator[](int rank) { return elems_[rank]; }
-    const T &operator[](int rank) const { return elems_[rank]; }
+    T &operator[](int rank);
+    const T &operator[](int rank) const;
 
     bool Insert(int rank, const T &elem);
     void PushBack(const T &elem);
@@ -38,21 +41,20 @@ private:
 };
 
 template <class T>
-void Vector<T>::Expand()
+const T &Vector<T>::operator[](int rank) const
 {
-    if (size_ < capacity_)
+    if (rank < 0 || rank >= size_)
     {
-        return;
+        cerr << "Vector下标访问越界！" << endl;
+        exit(1);
     }
-    T *old_elems = elems_;
-    capacity_ *= 2;
-    elems_ = new T[capacity_];
-    for (int i = 0; i <= size_; i++)
-    {
-        elems_[i] = old_elems[i];
-    }
-    delete[] old_elems;
-    return;
+    return elems_[rank];
+}
+
+template <class T>
+T &Vector<T>::operator[](int rank)
+{
+    return const_cast<T &>(static_cast<const Vector &>(*this)[rank]);
 }
 
 template <class T>
@@ -117,4 +119,21 @@ void Vector<T>::Init(const Vector &rhs)
     }
 }
 
+template <class T>
+void Vector<T>::Expand()
+{
+    if (size_ < capacity_)
+    {
+        return;
+    }
+    T *old_elems = elems_;
+    capacity_ *= 2;
+    elems_ = new T[capacity_];
+    for (int i = 0; i <= size_; i++)
+    {
+        elems_[i] = old_elems[i];
+    }
+    delete[] old_elems;
+    return;
+}
 #endif //!_VECTOR_H_
