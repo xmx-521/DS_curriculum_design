@@ -26,13 +26,13 @@ class Student
 
 public:
     Student(){};
-    Student(int number, const string &name, char sex, int age, const string &test_type);
+    Student(int number, const string &name, const string &sex, int age, const string &test_type);
     ~Student() {}
 
 private:
     int number_;
     string name_;
-    char sex_;
+    string sex_;
     int age_;
     string test_type_;
 };

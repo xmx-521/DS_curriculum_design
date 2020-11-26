@@ -6,9 +6,10 @@
             "command": "g++.exe",
             "args": [
                 "-g", //在这里列出你想编译的cpp文件
-                "D:/github/DS_course_design/src/Problem3/Problem3.cpp",
+                //"-static",
+                "D:/github/DS_course_design/src/Problem1/Problem1.cpp",
                 "-o", //在这里列出你想生成exe的目录位置与名称
-                "D:/github/DS_course_design/src/Problem3/Problem3.exe"
+                "D:/github/DS_course_design/src/Problem1/Problem1.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

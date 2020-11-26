@@ -14,7 +14,7 @@ int main()
     return 0;
 }
 
-Student::Student(int number, const string &name, char sex, int age, const string &test_type)
+Student::Student(int number, const string &name, const string &sex, int age, const string &test_type)
     : number_(number),
       name_(name),
       sex_(sex),
@@ -33,16 +33,27 @@ ostream &operator<<(ostream &os, const Student &rhs)
 
 System::System()
 {
-    cout << "é¦–å…ˆè¯·å»ºç«‹è€ƒç”Ÿä¿¡æ¯ç³»ç»Ÿï¼" << endl;
-    cout << "è¯·è¾“å…¥è€ƒç”Ÿäººæ•°ï¼š";
+    cout << "Ê×ÏÈÇë½¨Á¢¿¼ÉúÐÅÏ¢ÏµÍ³£¡" << endl;
     int students_num = 0;
-    cin >> students_num;
-    cout << "è¯·ä¾æ¬¡è¾“å…¥è€ƒç”Ÿçš„è€ƒå·ï¼Œå§“åï¼Œæ€§åˆ«ï¼Œå¹´é¾„åŠæŠ¥è€ƒç±»åˆ«ï¼" << endl;
+    while (true)
+    {
+        cout << "ÇëÊäÈë¿¼ÉúÈËÊý£º";
+        cin >> students_num;
+        if (students_num <= 0)
+        {
+            cout << "ÊäÈëÈËÊýÎÞÐ§£¬ÇëÖØÐÂÊäÈë";
+        }
+        else
+        {
+            break;
+        }
+    }
+    cout << "ÇëÒÀ´ÎÊäÈë¿¼ÉúµÄ¿¼ºÅ£¬ÐÕÃû£¬ÐÔ±ð£¬ÄêÁä¼°±¨¿¼Àà±ð£¡" << endl;
     for (int i = 0; i < students_num; ++i)
     {
         int number = 0;
         string name;
-        char sex;
+        string sex;
         int age = 0;
         string test_type;
         cin >> number >> name >> sex >> age >> test_type;
@@ -62,11 +73,11 @@ void System::Loop()
     bool sign_in = true;
     while (sign_in)
     {
-        cout << "è¯·é€‰æ‹©ä½ è¦è¿›è¡Œçš„æ“ä½œ(1ä¸ºæ’å…¥ï¼Œ2ä¸ºåˆ é™¤ï¼Œ3ä¸ºæŸ¥æ‰¾ï¼Œ4ä¸ºä¿®æ”¹ï¼Œ5ä¸ºç»Ÿè®¡ï¼Œ6ä¸ºå–æ¶ˆæ“ä½œï¼Œ0ä¸ºé€€å‡ºç³»ç»Ÿ)" << endl;
-        cout << "è¯·é€‰æ‹©ä½ è¦è¿›è¡Œçš„æ“ä½œï¼š";
-        int op;
-        cin >> op;
-        switch (op)
+        cout << "ÇëÑ¡ÔñÄãÒª½øÐÐµÄ²Ù×÷(1Îª²åÈë£¬2ÎªÉ¾³ý£¬3Îª²éÕÒ£¬4ÎªÐÞ¸Ä£¬5ÎªÍ³¼Æ£¬6ÎªÈ¡Ïû²Ù×÷£¬0ÎªÍË³öÏµÍ³)" << endl;
+        cout << "ÇëÑ¡ÔñÄãÒª½øÐÐµÄ²Ù×÷£º";
+        int operation;
+        cin >> operation;
+        switch (operation)
         {
         case insert:
             Insert();
@@ -88,11 +99,11 @@ void System::Loop()
         //     break;
         case sign_out:
             sign_in = false;
-            cout << "ç³»ç»Ÿé€€å‡º" << endl;
+            cout << "ÏµÍ³ÍË³ö" << endl;
             break;
 
         default:
-            cout << "æ‚¨è¾“å…¥çš„æ“ä½œä¸åœ¨ç³»ç»Ÿè§„å®šèŒƒå›´å†…ï¼Œè¯·é‡æ–°è¾“å…¥" << endl
+            cout << "ÄúÊäÈëµÄ²Ù×÷²»ÔÚÏµÍ³¹æ¶¨·¶Î§ÄÚ£¬ÇëÖØÐÂÊäÈë" << endl
                  << endl;
             break;
         }
@@ -104,11 +115,11 @@ void System::Insert()
     int insert_pos = 0;
     while (true)
     {
-        cout << "è¯·è¾“å…¥ä½ è¦æ’å…¥çš„è€ƒç”Ÿçš„ä½ç½®ï¼š";
+        cout << "ÇëÊäÈëÄãÒª²åÈëµÄ¿¼ÉúµÄÎ»ÖÃ£º";
         cin >> insert_pos;
         if (insert_pos <= 0 || insert_pos > students_.GetLength() + 1)
         {
-            cerr << "æ’å…¥ä½ç½®" << insert_pos << "æ— æ•ˆ,è¯·é‡æ–°è¾“å…¥æ’å…¥ä½ç½®" << endl
+            cerr << "²åÈëÎ»ÖÃ" << insert_pos << "ÎÞÐ§,ÇëÖØÐÂÊäÈë²åÈëÎ»ÖÃ" << endl
                  << endl;
             continue;
         }
@@ -119,10 +130,10 @@ void System::Insert()
     }
     while (true)
     {
-        cout << "è¯·ä¾æ¬¡è¾“å…¥è¦æ’å…¥çš„è€ƒç”Ÿçš„è€ƒå·ï¼Œå§“åï¼Œæ€§åˆ«ï¼Œå¹´é¾„åŠæŠ¥è€ƒç±»åˆ«ï¼" << endl;
+        cout << "ÇëÒÀ´ÎÊäÈëÒª²åÈëµÄ¿¼ÉúµÄ¿¼ºÅ£¬ÐÕÃû£¬ÐÔ±ð£¬ÄêÁä¼°±¨¿¼Àà±ð£¡" << endl;
         int number = 0;
         string name;
-        char sex;
+        string sex;
         int age = 0;
         string test_type;
         cin >> number >> name >> sex >> age >> test_type;
@@ -145,7 +156,7 @@ void System::Erase()
 {
     while (true)
     {
-        cout << "è¯·è¾“å…¥è¦åˆ é™¤çš„è€ƒç”Ÿçš„è€ƒå·ï¼š";
+        cout << "ÇëÊäÈëÒªÉ¾³ýµÄ¿¼ÉúµÄ¿¼ºÅ£º";
         int erase_number = 0;
         cin >> erase_number;
         int index = 1;
@@ -153,39 +164,39 @@ void System::Erase()
         {
             if (node->GetData().number_ == erase_number)
             {
-                cout << "ä½ åˆ é™¤çš„å­¦ç”Ÿä¸ºï¼š" << node->GetData();
+                cout << "ÄãÉ¾³ýµÄÑ§ÉúÎª£º" << node->GetData();
                 students_.Erase(index);
                 Display();
                 return;
             }
             index++;
         }
-        cerr << "ç³»ç»Ÿä¸­æ— è€ƒå·ä¸º" << erase_number << "çš„è€ƒç”Ÿï¼Œè¯·æ ¸å¯¹åŽé‡æ–°è¾“å…¥" << endl
+        cerr << "ÏµÍ³ÖÐÎÞ¿¼ºÅÎª" << erase_number << "µÄ¿¼Éú£¬ÇëºË¶ÔºóÖØÐÂÊäÈë" << endl
              << endl;
     }
 }
 
 void System::Search()
 {
-    cout << "è¯·è¾“å…¥ä½ è¦æŸ¥æ‰¾çš„è€ƒç”Ÿçš„è€ƒå·ï¼š";
+    cout << "ÇëÊäÈëÄãÒª²éÕÒµÄ¿¼ÉúµÄ¿¼ºÅ£º";
     int search_number = 0;
     cin >> search_number;
     for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
     {
         if (node->GetData().number_ == search_number)
         {
-            cout << "æ‚¨æŸ¥æ‰¾çš„è€ƒç”Ÿçš„ä¿¡æ¯ä¸ºï¼š" << endl;
-            cout << "è€ƒå·" << '\t'
-                 << "å§“å" << '\t'
-                 << "æ€§åˆ«" << '\t'
-                 << "å¹´é¾„" << '\t'
-                 << "æŠ¥è€ƒç±»åˆ«" << endl;
+            cout << "Äú²éÕÒµÄ¿¼ÉúµÄÐÅÏ¢Îª£º" << endl;
+            cout << "¿¼ºÅ" << '\t'
+                 << "ÐÕÃû" << '\t'
+                 << "ÐÔ±ð" << '\t'
+                 << "ÄêÁä" << '\t'
+                 << "±¨¿¼Àà±ð" << endl;
             cout << node->GetData()
                  << endl;
             return;
         }
     }
-    cout << "ç³»ç»Ÿä¸­æ— è€ƒå·ä¸º" << search_number << "çš„è€ƒç”Ÿ" << endl
+    cout << "ÏµÍ³ÖÐÎÞ¿¼ºÅÎª" << search_number << "µÄ¿¼Éú" << endl
          << endl;
 }
 
@@ -194,7 +205,7 @@ void System::Modify()
     int modify_number = 0;
     while (true)
     {
-        cout << "è¯·è¾“å…¥ä½ è¦æ”¹å˜ä¿¡æ¯çš„è€ƒç”Ÿçš„è€ƒå·ï¼š";
+        cout << "ÇëÊäÈëÄãÒª¸Ä±äÐÅÏ¢µÄ¿¼ÉúµÄ¿¼ºÅ£º";
         cin >> modify_number;
         for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
         {
@@ -202,10 +213,10 @@ void System::Modify()
             {
                 while (true)
                 {
-                    cout << "è¯·ä¾æ¬¡è¾“å…¥è¦æ”¹å˜çš„è€ƒç”Ÿçš„è€ƒå·ï¼Œå§“åï¼Œæ€§åˆ«ï¼Œå¹´é¾„åŠæŠ¥è€ƒç±»åˆ«ï¼" << endl;
+                    cout << "ÇëÒÀ´ÎÊäÈëÒª¸Ä±äµÄ¿¼ÉúµÄ¿¼ºÅ£¬ÐÕÃû£¬ÐÔ±ð£¬ÄêÁä¼°±¨¿¼Àà±ð£¡" << endl;
                     int number = 0;
                     string name;
-                    char sex;
+                    string sex;
                     int age = 0;
                     string test_type;
                     cin >> number >> name >> sex >> age >> test_type;
@@ -223,30 +234,30 @@ void System::Modify()
                 }
             }
         }
-        cout << "ç³»ç»Ÿä¸­ä¸å­˜åœ¨è€ƒå·ä¸º" << modify_number << "çš„è€ƒç”Ÿ,è¯·æ ¸å¯¹åŽé‡æ–°è¾“å…¥" << endl
+        cout << "ÏµÍ³ÖÐ²»´æÔÚ¿¼ºÅÎª" << modify_number << "µÄ¿¼Éú,ÇëºË¶ÔºóÖØÐÂÊäÈë" << endl
              << endl;
     }
 }
 
 void System::Statistic()
 {
-    cout << "ç»Ÿè®¡ç»“æžœä¸ºï¼š" << endl;
+    cout << "Í³¼Æ½á¹ûÎª£º" << endl;
     {
-        cout << "ç³»ç»Ÿä¸­å…±æœ‰" << students_.GetLength() << "åè€ƒç”Ÿ" << endl;
+        cout << "ÏµÍ³ÖÐ¹²ÓÐ" << students_.GetLength() << "Ãû¿¼Éú" << endl;
         int male_num = 0;
         int sum_age = 0;
         for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
         {
             sum_age += node->GetData().age_;
-            if (node->GetData().sex_ == 'm')
+            if (node->GetData().sex_ == "ÄÐ")
             {
                 male_num++;
             }
         }
         int female_num = students_.GetLength() - male_num;
-        cout << "ç”·ç”Ÿäººæ•°ä¸º" << male_num << ",å¥³ç”Ÿäººæ•°ä¸º" << female_num << endl;
+        cout << "ÄÐÉúÈËÊýÎª" << male_num << ",Å®ÉúÈËÊýÎª" << female_num << endl;
         float average_age = (float)sum_age / (float)students_.GetLength();
-        printf("å¹³å‡å¹´é¾„ä¸º:%.2f", average_age);
+        printf("Æ½¾ùÄêÁäÎª:%.2f", average_age);
         cout << endl
              << endl;
     }
@@ -258,7 +269,7 @@ bool System::IsNumberSame(int number)
     {
         if (number == node->GetData().number_)
         {
-            cerr << "é”™è¯¯ï¼è€ƒå·ä¸º" << number << "çš„è€ƒç”Ÿå·²åœ¨ç³»ç»Ÿä¸­ï¼Œè¯·æ ¸å¯¹åŽé‡æ–°è¾“å…¥" << endl
+            cerr << "´íÎó£¡¿¼ºÅÎª" << number << "µÄ¿¼ÉúÒÑÔÚÏµÍ³ÖÐ£¬ÇëºË¶ÔºóÖØÐÂÊäÈë" << endl
                  << endl;
             return true;
         }
@@ -269,11 +280,11 @@ bool System::IsNumberSame(int number)
 void System::Display()
 {
     cout << endl;
-    cout << "è€ƒå·" << '\t'
-         << "å§“å" << '\t'
-         << "æ€§åˆ«" << '\t'
-         << "å¹´é¾„" << '\t'
-         << "æŠ¥è€ƒç±»åˆ«" << endl;
+    cout << "¿¼ºÅ" << '\t'
+         << "ÐÕÃû" << '\t'
+         << "ÐÔ±ð" << '\t'
+         << "ÄêÁä" << '\t'
+         << "±¨¿¼Àà±ð" << endl;
     for (LinkNode<Student> *node = students_.GetBegin(); node != students_.GetEnd(); node = node->Next())
     {
         cout << node->GetData();
