@@ -1,3 +1,6 @@
+#ifndef _STACK_H_
+#define _STACK_H_
+
 #include "../Vector/Vecotr.h"
 #include <iostream>
 
@@ -16,7 +19,8 @@ public:
     {
         if (Empty())
         {
-            cerr << "æ ˆå·²ä¸ºç©ºï¼Œæ— æ³•å¼¹å‡º" << endl;
+            cerr << "Õ»ÒÑÎª¿Õ£¬ÎÞ·¨µ¯³ö" << endl;
+            system("pause");
             exit(1);
         }
         T temp = elems_[elems_.Size() - 1];
@@ -27,13 +31,25 @@ public:
     {
         if (Empty())
         {
-            cerr << "æ ˆå·²ä¸ºç©º,æ— æ³•å–å¾—æ ˆé¡¶å…ƒç´ " << endl;
+            cerr << "Õ»ÒÑÎª¿Õ,ÎÞ·¨È¡µÃÕ»¶¥ÔªËØ" << endl;
+            system("pause");
             exit(1);
         }
         return elems_[elems_.Size() - 1];
     }
-    const T &Top() const { return elems_[elems_.Size() - 1]; }
+    const T &Top() const
+    {
+        if (Empty())
+        {
+            cerr << "Õ»ÒÑÎª¿Õ,ÎÞ·¨È¡µÃÕ»¶¥ÔªËØ" << endl;
+            system("pause");
+            exit(1);
+        }
+        return elems_[elems_.Size() - 1];
+    }
 
 private:
     Vector<T> elems_;
 };
+
+#endif //!_STACK_H_

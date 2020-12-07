@@ -44,7 +44,7 @@ public:
 	bool Insert(int index, T &data);		 //在第index节点后插入data,附加头结点index为0
 	void PushBack(const T &data);
 	bool Erase(int index); //删除第index节点,可删除节点index从1开始
-	bool IsEmpty() const { return first_->r_link_ == nullptr ? true : false; }
+	bool IsEmpty() const { return first_->r_link_ == first_ ? true : false; }
 
 	T &operator[](int index);		  //重载subscript运算符，可访问起始位置为1
 	List &operator=(const List &rhs); //重载“=”运算符
