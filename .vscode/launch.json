@@ -13,7 +13,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "D:/mingw64/mingw64/bin/gdb.exe", //在这里写出你的gdb.exe路径
             "setupCommands": [

@@ -1,7 +1,7 @@
 #ifndef _PROBLEM_3_H_
 #define _PROBLEM_3_H_
 
-#include "../../lib/Stack/Stack.h"
+#include "../../include/Stack/Stack.h"
 
 enum Dir
 {
