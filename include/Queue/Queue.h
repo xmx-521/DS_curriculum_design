@@ -15,6 +15,7 @@ public:
     ~Queue(){};
 
     bool Empty() { return elems_.IsEmpty(); }
+    int Size() { return elems_.GetLength(); }
     void Enqueue(const T &elem) { elems_.PushBack(elem); }
     T Dequeue()
     {
