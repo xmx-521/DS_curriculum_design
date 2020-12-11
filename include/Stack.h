@@ -1,7 +1,7 @@
 #ifndef _STACK_H_
 #define _STACK_H_
 
-#include "../Vector/Vecotr.h"
+#include "Vector.h"
 #include <iostream>
 
 using std::cerr;

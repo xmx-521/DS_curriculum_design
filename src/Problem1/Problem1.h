@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include "../../include/List/List.h"
+#include "../../include/List.h"
 
 using std::ostream;
 using std::string;

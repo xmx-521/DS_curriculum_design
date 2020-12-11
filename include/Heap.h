@@ -4,7 +4,7 @@
 #include <functional>
 #include <algorithm>
 #include <iostream>
-#include "../Vector/Vecotr.h"
+#include "Vector.h"
 
 using std::cout;
 using std::less;

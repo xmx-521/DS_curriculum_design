@@ -1,6 +1,6 @@
 #ifndef _PROBLEM_4_H
 #define _PROBLEM_4_H
-#include "../../include/Stack/Stack.h"
+#include "../../include/Stack.h"
 #include <string>
 using std::string;
 

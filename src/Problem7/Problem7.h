@@ -1,7 +1,7 @@
 #ifndef _PROBLEM7_H_
 #define _PROBLEM7_H_
 
-#include "../../include/PriorQueue/PriorQueue.h"
+#include "../../include/PriorQueue.h"
 
 template <class T>
 struct GreaterThan

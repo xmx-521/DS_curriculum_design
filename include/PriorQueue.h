@@ -1,6 +1,6 @@
 #ifndef _PRIOR_QUEUE_
 #define _PRIOR_QUEUE_
-#include "../Heap/heap.h"
+#include "Heap.h"
 
 template <class T, class Lt = less<T>>
 class PriorQueue

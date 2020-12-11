@@ -1,7 +1,7 @@
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
 
-#include "../List/List.h"
+#include "List.h"
 #include <iostream>
 
 using std::cerr;
