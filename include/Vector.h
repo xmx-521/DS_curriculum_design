@@ -15,8 +15,17 @@ public:
         elems_ = new T[default_capacity];
     }
     Vector(const Vector &rhs) { Init(rhs); }
+    Vector(int size, const T &init_value) : size_(0), capacity_(size)
+    {
+        elems_ = new T[size];
+        for (int i = 0; i < size; ++i)
+        {
+            PushBack(init_value);
+        }
+    }
     ~Vector() { delete[] elems_; }
     int Size() { return size_; }
+    int Size() const { return size_; }
     Vector &operator=(const Vector &rhs)
     {
         T *old_elems_ = elems_;
@@ -129,7 +138,7 @@ void Vector<T>::Expand()
     T *old_elems = elems_;
     capacity_ *= 2;
     elems_ = new T[capacity_];
-    for (int i = 0; i <= size_; i++)
+    for (int i = 0; i < size_; i++)
     {
         elems_[i] = old_elems[i];
     }

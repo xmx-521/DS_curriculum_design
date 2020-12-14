@@ -65,6 +65,7 @@ void ShowHelp()
     cout << left << setw(50) << "**               E --- 退出程序           \t**" << endl;
     cout << left << setw(50) << "**               F --- 打印家谱           \t**" << endl;
     cout << left << setw(50) << "==================================================" << endl;
+    cout << endl;
 }
 
 void FamilyTree::EstablishAFamily()

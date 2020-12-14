@@ -4,7 +4,7 @@ using std::cout;
 using std::endl;
 int main()
 {
-    //7*7çš„è¿·å®«ï¼Œå…¥å£ä¸º(1,1),å‡ºå£ä¸º(1,5)
+    //7*7µÄÃÔ¹¬£¬Èë¿ÚÎª(1,1),³ö¿ÚÎª(1,5)
     char c_maze[MAX_SIZE][MAX_SIZE] = {
         {'#', '#', '#', '#', '#', '#', '#'},
         {'#', '0', '0', '0', '#', '0', '#'},
@@ -18,6 +18,7 @@ int main()
     Stack<Node *> route = FindRoute(maze, &maze[1][1], &maze[1][5]);
     UpdateMaze(c_maze, route);
     PrintMaze(c_maze, 7, maze[1][1], maze[1][5]);
+    system("pause");
     return 0;
 }
 
@@ -135,17 +136,17 @@ void UpdateMaze(char c_maze[MAX_SIZE][MAX_SIZE], Stack<Node *> &route)
 
 void PrintMaze(char c_maze[MAX_SIZE][MAX_SIZE], int maze_size, const Node &begin, const Node &end)
 {
-    cout << "èµ·ç‚¹ä¸º:(" << begin.x_ << "," << begin.y_ << ")" << endl;
-    cout << "ç»ˆç‚¹ä¸º:(" << end.x_ << "," << end.y_ << ")" << endl;
+    cout << "ÆğµãÎª:(" << begin.x_ << "," << begin.y_ << ")" << endl;
+    cout << "ÖÕµãÎª:(" << end.x_ << "," << end.y_ << ")" << endl;
     cout << '\t';
     for (int i = 0; i < maze_size; i++)
     {
-        cout << i << "åˆ—" << '\t';
+        cout << i << "ÁĞ" << '\t';
     }
     cout << endl;
     for (int i = 0; i < maze_size; i++)
     {
-        cout << i << "è¡Œ" << '\t';
+        cout << i << "ĞĞ" << '\t';
         for (int j = 0; j < maze_size; j++)
         {
             cout << c_maze[i][j] << '\t';
