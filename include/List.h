@@ -36,6 +36,7 @@ public:
 	~List() { Clear(); }
 	void Clear();
 	int GetLength() const;
+	int GetLength();
 	LinkNode<T> *GetHead() const { return first_; } //获得头指针
 	LinkNode<T> *GetBegin() const { return first_->r_link_; }
 	LinkNode<T> *GetEnd() const { return first_; }
@@ -135,6 +136,19 @@ void List<T>::Clear()
 
 template <class T>
 int List<T>::GetLength() const
+{
+	int cnt = 0;
+	LinkNode<T> *ptr = first_->r_link_;
+	while (ptr != first_)
+	{
+		cnt++;
+		ptr = ptr->r_link_;
+	}
+	return cnt;
+}
+
+template <class T>
+int List<T>::GetLength()
 {
 	int cnt = 0;
 	LinkNode<T> *ptr = first_->r_link_;

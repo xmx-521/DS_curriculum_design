@@ -143,11 +143,84 @@ public:
         cout << endl
              << endl;
     }
+
     void SetEmpty()
     {
         num_v_ = num_e_ = 0;
         vertices_ = Vector<Vertex<Tv>>();
         edges_ = Vector<Vector<Edge<Te> *>>();
+    }
+
+    Vector<Vector<Tv>> ToplogicalSort()
+    {
+        int *count_in = new int[num_v_];
+        memset(count_in, 0, num_v_ * sizeof(int));
+        for (int head = 0; head < num_v_; head++)
+        {
+            for (int out = 0; out < num_v_; out++)
+            {
+                if (edges_[head][out] != nullptr)
+                {
+                    count_in[out]++;
+                }
+            }
+        }
+        int top = -1;
+        for (int i = 0; i < num_v_; i++)
+        {
+            if (count_in[i] == 0)
+            {
+                count_in[i] = top;
+                top = i;
+            }
+        }
+        Vector<Vector<Tv>> sorted_vertices;
+        int s = 0;
+        for (int i = 0; i < num_v_; i++)
+        {
+            int v = top;
+            top = count_in[top];
+            if (s > sorted_vertices.Size() - 1)
+            {
+                Vector<Tv> a;
+                a.PushBack(vertices_[v].data_);
+                sorted_vertices.PushBack(a);
+            }
+            else
+            {
+                sorted_vertices[s].PushBack(vertices_[v].data_);
+            }
+            bool change_sem = false;
+            for (int j = 0; j < num_v_; j++)
+            {
+                if (edges_[v][j] != nullptr)
+                {
+                    if (--count_in[j] == 0)
+                    {
+                        change_sem = true;
+                        count_in[j] = top;
+                        top = j;
+                    }
+                }
+            }
+            if (change_sem)
+            {
+                s++;
+            }
+        }
+        return sorted_vertices;
+    }
+
+    int GetIndex(const Tv &data)
+    {
+        for (int i = 0; i < num_v_; ++i)
+        {
+            if (vertices_[i].data_ == data)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
 private:

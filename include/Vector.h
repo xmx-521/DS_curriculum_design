@@ -15,6 +15,10 @@ public:
         elems_ = new T[default_capacity];
     }
     Vector(const Vector &rhs) { Init(rhs); }
+    Vector(int size) : size_(0), capacity_(size)
+    {
+        elems_ = new T[size];
+    }
     Vector(int size, const T &init_value) : size_(0), capacity_(size)
     {
         elems_ = new T[size];

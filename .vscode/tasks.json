@@ -7,9 +7,9 @@
             "args": [
                 "-g", //在这里列出你想编译的cpp文件
                 //"-static",
-                "D:/github/DS_curriculum_design/src/Problem8/Problem8.cpp",
+                "D:/github/DS_curriculum_design/src/Problem9/Problem9.cpp",
                 "-o", //在这里列出你想生成exe的目录位置与名称
-                "D:/github/DS_curriculum_design/src/Problem8/Problem8.exe"
+                "D:/github/DS_curriculum_design/src/Problem9/Problem9.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
